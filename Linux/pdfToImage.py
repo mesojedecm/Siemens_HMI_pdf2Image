@@ -5,10 +5,10 @@ from pdf2image import convert_from_path
 
 ######################### pdf2image ###########################
 # Adjust the path to your Poppler installation on Fedora
-poppler_path = "/usr/bin"  # The default installation path on Fedora
+poppler_path = "/usr/bin"  # The default installation path on Linux
 
 # Use the correct path to your PDF files
-pdf_directory = '/home/matej/Desktop/pdf2image/pdf_processing_pio/'
+pdf_directory = '*path_to_folder_with_pdfs*'
 
 pdf_filenames = glob.glob(pdf_directory + '*.pdf')
 crop_filenames = glob.glob(pdf_directory + '*.jpeg')

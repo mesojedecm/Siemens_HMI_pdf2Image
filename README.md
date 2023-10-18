@@ -1,7 +1,7 @@
 
 # Welcome to Siemens_HMI_pdf2Image
 
-Script for converting .pdf screen shoots of Siemens HMI to .jpeg files. Currently only for Linux OS.
+Script for converting .pdf screenshoots of Siemens HMI to .jpeg files. Currently only for Linux OS.
 
 ## Install:
 
