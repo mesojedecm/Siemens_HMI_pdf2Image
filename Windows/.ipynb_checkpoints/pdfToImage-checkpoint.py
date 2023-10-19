@@ -2,20 +2,17 @@ import glob, os
 from PIL import Image
 from pdf2image import convert_from_path
 
-
-# Adjust the path to your Poppler installation on Linux
-poppler_path = "/usr/bin"
-
-# Use the correct folder path to your PDF files
-pdf_directory = '/home/matej/Desktop/pdf2image/working_folder/'
-
-# Set image size after resizing
-small_size = (400, 290)
+new_size = (370, 260)
 
 ######################### pdf2image ###########################
+# Adjust the path to your Poppler installation on Fedora
+#poppler_path = r"C:\Users\matej.mesojedec\Desktop\pdf2image\poppler-23.08.0\Library\bin"  # The default installation path on Fedora
+
+# Use the correct folder path to your PDF files
+pdf_directory = r'C:\Users\matej.mesojedec\Desktop\pdf2image\Linux\pdf'
+
 
 pdf_filenames = glob.glob(pdf_directory + '*.pdf')
-crop_filenames = glob.glob(pdf_directory + '*.jpg')
 
 for pdf_filename in pdf_filenames:
     images = convert_from_path(pdf_filename, poppler_path=poppler_path)
@@ -30,7 +27,7 @@ image_directory = pdf_directory
 # Use glob to get a list of JPEG files in the directory
 jpeg_files = glob.glob(image_directory + '*.jpg')
 
-# Define a function to crop an image
+# Define a function to crop an image into halves
 def crop_image(image_path):
     try:
         # Open the image using PIL (Python Imaging Library)
@@ -45,26 +42,18 @@ def crop_image(image_path):
         right = width - 37
         bottom = 970 # Crop the image into halves
 
-        # Crop the image
-        crop = img.crop((left, top, right, bottom))
-        
-        # Save original image
-        crop.save(image_path[:-4] + '_screen_big.jpg', 'JPEG')
-        
-        # Resize original image
-        resize = crop.resize(small_size)
-        
-        # Save resized image
-        resize.save(image_path[:-4] + '_screen_small.jpg', 'JPEG')
+        # Crop the top half
+        top_half = img.crop((left, top, right, bottom))
+        top_half = top_half.resize(new_size)
+        top_half.save(image_path[:-4] + '_screen.jpg', 'JPEG')
 
-        # Remove original pdf
         os.remove(image_path)
-
-        print(f"Cropped {image_path}.")
+        print(f"Cropped {image_path} into halves.")
 
     except Exception as e:
         print(f"Error processing {image_path}: {e}")
 
-# Loop through each JPEG file and crop
+# Loop through each JPEG file and crop it into halves
 for jpeg_file in jpeg_files:
     crop_image(jpeg_file)
+    

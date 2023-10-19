@@ -4,10 +4,10 @@ from pdf2image import convert_from_path
 
 
 # Adjust the path to your Poppler installation on Linux
-poppler_path = "/usr/bin"
+poppler_path = poppler_path = r"C:\Users\matej.mesojedec\Desktop\pdf2image\poppler-23.08.0\Library\bin"  
 
 # Use the correct folder path to your PDF files
-pdf_directory = '/home/matej/Desktop/pdf2image/working_folder/'
+pdf_directory = r'C:\Users\matej.mesojedec\Desktop\pdf2image\Linux\pdf'
 
 # Set image size after resizing
 small_size = (400, 290)
@@ -68,3 +68,5 @@ def crop_image(image_path):
 # Loop through each JPEG file and crop
 for jpeg_file in jpeg_files:
     crop_image(jpeg_file)
+
+    
